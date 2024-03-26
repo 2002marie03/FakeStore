@@ -48,8 +48,7 @@ dependencies {
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
-
-
+    implementation("com.squareup.retrofit2:retrofit:2.7.1")
     //SDP - a scalable size unit ->https://github.com/intuit/sdp
     implementation ("com.intuit.sdp:sdp-android:1.1.0")
     //SSP - a scalable size unit for texts -> https://github.com/intuit/ssp
@@ -58,7 +57,7 @@ dependencies {
     implementation("com.makeramen:roundedimageview:2.3.0")
     //A powerful image downloading and caching library for Android-> https://github.com/square/picasso
     implementation("com.squareup.picasso:picasso:2.71828")
-
     //https://github.com/google/gson
     implementation("com.google.code.gson:gson:2.10.1")
+
 }

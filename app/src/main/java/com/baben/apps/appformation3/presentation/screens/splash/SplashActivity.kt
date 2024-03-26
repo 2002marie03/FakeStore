@@ -8,6 +8,7 @@ import android.os.Looper
 import com.baben.apps.appformation3.core.app.AppConfig
 import com.baben.apps.appformation3.core.bases.BaseActivities
 import com.baben.apps.appformation3.databinding.ActivitySplashBinding
+import com.baben.apps.appformation3.presentation.screens.home.HomeActivity
 import com.baben.apps.appformation3.presentation.screens.login.LoginActivity
 
 @SuppressLint("CustomSplashScreen")
@@ -34,9 +35,18 @@ class SplashActivity : BaseActivities() {
     }
 
     private fun displayNextScreen() {
-        //TODO :: check if user already logged or not
-        //TODO :: if is already logged go to HomeActivity
-        //TODO :: if is not logged go to LoginActivity
-        startActivity(Intent(context, LoginActivity::class.java))
+        val isLoggedIn = isLoggedIn() // Fonction pour vérifier si l'utilisateur est connecté
+
+        if (isLoggedIn) {
+            startActivity(Intent(this, HomeActivity::class.java))
+        } else {
+            startActivity(Intent(this, LoginActivity::class.java))
+        }
+        finish() // Fermer l'activité actuelle
+    }
+
+    private fun isLoggedIn(): Boolean {
+        val sharedPreferences = getSharedPreferences("myPrefs", MODE_PRIVATE)
+        return sharedPreferences.getBoolean("isLoggedIn", false)
     }
 }
