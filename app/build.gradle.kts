@@ -1,6 +1,7 @@
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
+    id ("kotlin-kapt")
 }
 
 android {
@@ -61,4 +62,11 @@ dependencies {
 
     //https://github.com/google/gson
     implementation("com.google.code.gson:gson:2.10.1")
+
+    implementation ("com.squareup.retrofit2:retrofit:2.9.0")
+    implementation ("'com.squareup.retrofit2:converter-gson:2.9.0")
+    implementation ("com.google.dagger:hilt-android:2.40.5")
+    kapt ("com.google.dagger:hilt-android-compiler:2.40.5")
+
+
 }

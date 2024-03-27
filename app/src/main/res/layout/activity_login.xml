@@ -36,6 +36,7 @@
 
 
         <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/username"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_40sdp"
             android:background="@drawable/edittext_theme"
@@ -47,6 +48,7 @@
 
 
         <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/passwrd"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_40sdp"
             android:layout_marginTop="@dimen/_15sdp"
