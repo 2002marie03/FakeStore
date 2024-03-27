@@ -41,6 +41,7 @@ class SplashActivity : BaseActivities() {
         //TODO :: if is not logged go to LoginActivity
         var SP = getSharedPreferences("user_connexion_prefs", Context.MODE_PRIVATE);
         val isLoggedIn = SP.getBoolean("isLoggetIn",false)
+        val userName = SP.getString("userName" , "")
         if (isLoggedIn){
             startActivity(Intent(context,HomeActivity::class.java))
             finish()

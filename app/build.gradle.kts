@@ -2,6 +2,7 @@ plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
     id ("kotlin-kapt")
+    id ("com.google.dagger.hilt.android")
 }
 
 android {
@@ -30,10 +31,13 @@ android {
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
+
     }
     kotlinOptions {
         jvmTarget = "1.8"
     }
+
+
 
 
     dataBinding.enable = true
@@ -63,10 +67,19 @@ dependencies {
     //https://github.com/google/gson
     implementation("com.google.code.gson:gson:2.10.1")
 
+
     implementation ("com.squareup.retrofit2:retrofit:2.9.0")
-    implementation ("'com.squareup.retrofit2:converter-gson:2.9.0")
-    implementation ("com.google.dagger:hilt-android:2.40.5")
-    kapt ("com.google.dagger:hilt-android-compiler:2.40.5")
+    implementation ("com.squareup.retrofit2:converter-gson:2.9.0")
+
+    implementation("com.google.dagger:hilt-android:2.51")
+    kapt("com.google.dagger:hilt-android-compiler:2.51")
+
+    // https://mvnrepository.com/artifact/org.mockito/mockito-core
+    testImplementation("org.mockito:mockito-core:5.11.0")
 
 
+}
+
+kapt {
+    correctErrorTypes = true
 }
