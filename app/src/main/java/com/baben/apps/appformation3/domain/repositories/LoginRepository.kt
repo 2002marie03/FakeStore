@@ -7,7 +7,7 @@ interface LoginRepository {
 
 
     @Throws(NetworkErrorException::class)
-    fun login(model: Login?): LoginResult?
+     fun login(model: Login?): LoginResult?
 
     enum class LoginResult {
         SUCCESS,

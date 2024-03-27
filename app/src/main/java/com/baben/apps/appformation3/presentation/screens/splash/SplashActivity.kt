@@ -35,14 +35,13 @@ class SplashActivity : BaseActivities() {
     }
 
     private fun displayNextScreen() {
-        val isLoggedIn = isLoggedIn() // Fonction pour vérifier si l'utilisateur est connecté
-
+        val isLoggedIn = isLoggedIn()
         if (isLoggedIn) {
             startActivity(Intent(this, HomeActivity::class.java))
         } else {
             startActivity(Intent(this, LoginActivity::class.java))
         }
-        finish() // Fermer l'activité actuelle
+        finish()
     }
 
     private fun isLoggedIn(): Boolean {

@@ -1,11 +1,19 @@
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
+    kotlin("kapt")
+    id("com.google.dagger.hilt.android")
 }
+
 
 android {
     namespace = "com.baben.apps.appformation3"
     compileSdk = 34
+
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
+    }
 
     defaultConfig {
         applicationId = "com.baben.apps.appformation3"
@@ -59,5 +67,18 @@ dependencies {
     implementation("com.squareup.picasso:picasso:2.71828")
     //https://github.com/google/gson
     implementation("com.google.code.gson:gson:2.10.1")
+// https://mvnrepository.com/artifact/javax.inject/javax.inject
+    implementation("javax.inject:javax.inject:1")
+    implementation("com.google.dagger:hilt-android:2.51")
+    kapt("com.google.dagger:hilt-android-compiler:2.51")
+    // https://mvnrepository.com/artifact/org.mockito/mockito-core
+    testImplementation("org.mockito:mockito-core:5.11.0")
+    androidTestImplementation("androidx.test:core:1.4.0")
 
 }
+
+kapt {
+    correctErrorTypes = true
+}
+
+
