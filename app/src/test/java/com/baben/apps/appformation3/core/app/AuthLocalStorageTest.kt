@@ -31,17 +31,17 @@ class AuthLocalStorageTest {
     fun setUp() {
         Mockito.`when`(context.getSharedPreferences(any(String::class.java), any(Int::class.java))).thenReturn(sharedPreferences)
         Mockito.`when`(sharedPreferences.edit()).thenReturn(editor)
+        Mockito.`when`(editor.putString(anyString(), anyString())).thenReturn(editor)
 
         sut=AuthLocalStorage(context)
     }
 
     @Test
-    fun Test_SharedPreference_Initialized(){
+    fun Test_SharedPreference_Initialized() {
         val args = ArgumentCaptor.forClass(String::class.java)
         Mockito.verify(context).getSharedPreferences(args.capture(),any(Int::class.java))
         assertEquals(args.value,AuthLocalStorage.Shared_Pref_Label)
         assertNotNull(sharedPreferences)
-
     }
     @Test
     fun saveTokenTest(){
@@ -50,23 +50,43 @@ class AuthLocalStorageTest {
         sut.saveToken(token)
 
         val captorKey = ArgumentCaptor.forClass(String::class.java)
-        val captorVal = ArgumentCaptor.forClass(String::class.java)
-        Mockito.verify(sharedPreferences.edit()).putString(captorKey.capture(), captorVal.capture())
-        assertEquals("token", captorKey.value)
-        //assertEquals(token, captorVal.value)
-       // Mockito.verify(editor).apply()
+        Mockito.verify(sharedPreferences.edit()).putString(captorKey.capture(), captorKey.capture())
+        Mockito.verify(editor).apply()
+
+        assertEquals("token", captorKey.allValues[0])
+        assertEquals(token, captorKey.allValues[1])
+
        // assertNotNull(editor)
 
 
     }
     @Test
     fun getTokenTest(){
+        val storedToken = ""
+        val captorKey = ArgumentCaptor.forClass(String::class.java)
+       // Mockito.verify(sharedPreferences).getString(captorKey.capture(),captorKey.capture())
+        Mockito.`when`(sharedPreferences.getString(captorKey.capture(),captorKey.capture())).thenReturn(storedToken)
+        val token = sut.getSavedToken()
+        assertEquals(storedToken,token)
+
     }
     @Test
     fun user_is_connectedTest(){
+        val token=""
+        val captorKey = ArgumentCaptor.forClass(String::class.java)
+        Mockito.`when`(sharedPreferences.getString("token",captorKey.value)).thenReturn(token)
+        val logged = sut.isLoggedIn()
+        assertNotNull(token)
+        assertTrue(logged)
+
     }
     @Test
     fun user_is_not_connectedTest(){
+        val token=null
+        val captorKey = ArgumentCaptor.forClass(String::class.java)
+        Mockito.`when`(sharedPreferences.getString("token",null)).thenReturn(token)
+        val logged = sut.isLoggedIn()
+        assertFalse(logged)
     }
 
     @After

@@ -14,9 +14,13 @@ class AuthLocalStorage(private val context: Context) {
         editor.putString("token", token)
         editor.apply()
     }
-    fun getSavedToken(): String {
-        return " "
+    fun getSavedToken(): String? {
+        return sharedPreferences.getString("token",null)
     }
+
+    fun isLoggedIn(): Boolean {
+        val tokenstored = sharedPreferences.getString("token", null)
+        return tokenstored != null}
 
 
 }
